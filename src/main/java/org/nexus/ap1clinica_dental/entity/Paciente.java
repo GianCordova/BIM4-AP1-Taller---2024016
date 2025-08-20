@@ -27,7 +27,7 @@ public class Paciente {
     private String fechadeNacimiento;
     private String telefono;
 
-    public Paciente(Integer idPaciente) {
+    public Paciente() {
     }
 
     public Paciente(Integer idPaciente, String nombre, String apellido, String fechadeNacimiento, String telefono) {

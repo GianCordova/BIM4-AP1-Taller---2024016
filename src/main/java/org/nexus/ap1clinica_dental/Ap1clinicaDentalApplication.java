@@ -29,7 +29,7 @@ public class Ap1clinicaDentalApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		clinicaDentalApp();
 	}
 
 	private void clinicaDentalApp(){
