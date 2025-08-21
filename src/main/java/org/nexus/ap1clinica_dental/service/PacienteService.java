@@ -28,6 +28,6 @@ public class PacienteService implements IPacienteService{
     }
 
     public void eliminarPaciente(Paciente paciente) {
-        pacienteRepository.save(paciente);
+        pacienteRepository.delete(paciente);
     }
 }
