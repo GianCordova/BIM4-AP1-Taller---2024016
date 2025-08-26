@@ -20,7 +20,10 @@
                                     update=":formulario-pacientes:tabla-pacientes"
                                     actionListener="#{indexController.cargarDatos}"/>
 <!--                        boton para agregar un nuevo Paciente-->
-                        <p:menuitem value="Nuevo Paciente" icon="pi pi-fw pi-plus"/>
+                        <p:menuitem value="Nuevo Paciente" icon="pi pi-fw pi-plus"
+                                    actionListener="#{indexController.agregarPaciente}"
+                                    update=":formulario-pacientes:ventana-paciente @this"
+                                    oncomplete="PF('ventanaModalPaciente').show()"/>
                     </p:menubar>
 
                 </div>
@@ -54,13 +57,64 @@
                         <p:column headerText="Telefono">
                             <h:outputText value="#{paciente.telefono}"/>
                         </p:column>
-                        private Integer idPaciente;
-                        private String nombre;
-                        private String apellido;
-                        private String fechadeNacimiento;
-                        private String telefono;
+                        <p:column>
+                            <p:commandButton value="Editar" icon="pi pi-pencil"
+                                                update=":formulario-modal:ventana-paciente"
+                                                process="@this"
+                                                oncomplete="PF('ventanaModalPaciente').show()"
+                                                class="ui-button-primary"
+                                                style="margin-right:.5rem">
+                                <f:setPropertyActionListener
+                                                value="#{paciente}"
+                                                target="#{indexController.pacienteSeleccionado}"/>
+                                <p:commandButton />
+                            </p:commandButton>
+                            <p:commandButton value="Eliminar" icon="pi pi-trash"
+                                             class="ui-button-danger">
+
+                            </p:commandButton>
+                        </p:column>
+
                     </p:dataTable>
                 </div>
+
+            </h:form>
+            <h:form id="formulario-modal">
+                <p:dialog header="Detalle Pacientes" showEffecet="fade" modal="true" widgetVar="ventanaModalPaciente" responsive="true">
+                    <p:outputPanel id="ventana-paciente" class="ui-fluid">
+                        <div class="field">
+                            <p:outputLabel for="nombre">Nombre</p:outputLabel>
+                            <p:inputText id="nombre"
+                                         value="#{indexController.pacienteSeleccionado.nombre}"
+                                         required="true" />
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="apellido">Apellido</p:outputLabel>
+                            <p:inputText id="apellido"
+                                         value="#{indexController.pacienteSeleccionado.apellido}"
+                                         required="true" />
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="fechadeNacimiento">Fecha de Nacimiento</p:outputLabel>
+                            <p:inputText id="fechadeNacimiento"
+                                         value="#{indexController.pacienteSeleccionado.fechadeNacimiento}"
+                                         required="true" />
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="telefono">Telefono</p:outputLabel>
+                            <p:inputText id="telefono"
+                                         value="#{indexController.pacienteSeleccionado.telefono}"
+                                         required="true" />
+                        </div>
+                    </p:outputPanel>
+                    <f:facet name="footer0">
+                        <p:commandButton value="Guardar" icon="pi pi-check"
+                        process="ventana-cliente @this"
+                        actionListener="#{indexController.guardarCliente}"/>
+                    </f:facet>
+
+                </p:dialog>
+
             </h:form>
 <!--            modal-->
         </div>
