@@ -3,21 +3,21 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Registro Cliente</title>
+        <title>Registro Paciente</title>
         <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
         <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-dark.css"/>
     </h:head>
     <h:body>
         <p>Hola Mundo, estoy con jsf</p>
         <div class="card">
-            <h:form id="formulario-clientes">
-                <p:growl id="mensaje-emergente" showDetails="true" />
+            <h:form id="formulario-pacientes">
+                <p:growl id="mensaje-emergente" showDetails="true"/>
 <!--                barra de menu-->
                 <div class="card">
                     <p:menubar>
 <!--                        boton de actualizar-->
                         <p:menuitem value="Inicio" icon="pi pi-fw pi-user"
-                                    update=":formulario-clientes:tabla-clientes"
+                                    update=":formulario-pacientes:tabla-pacientes"
                                     actionListener="#{indexController.cargarDatos}"/>
 <!--                        boton para agregar un nuevo Paciente-->
                         <p:menuitem value="Nuevo Paciente" icon="pi pi-fw pi-plus"/>
@@ -25,6 +25,42 @@
 
                 </div>
 <!--            tabla de paciente-->
+                <div class="card">
+                    <p:dataTable value="#{indexController.pacientes}" var="paciente"
+                                    id="tabla-pacientes" widgetVar="pacienteTabla">
+                        <f:facet name="header">
+                            <div class="flex justify-content-center flex-wrap
+                                        card-container yellow -container">
+                                <div class="flex align-items-center justify-content-center
+                                            w-20rem h4rem bg-yellow-500 font-bold m-2
+                                            text-gray-900 border-round">
+                                    <h3>Registro de Pacientes - nexus</h3>
+                                </div>
+                            </div>
+                        </f:facet>
+
+                        <p:column headerText="ID">
+                            <h:outputText value="#{paciente.idPaciente}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{paciente.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <h:outputText value="#{paciente.apellido}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de Nacimiento">
+                            <h:outputText value="#{paciente.fechadeNacimiento}"/>
+                        </p:column>
+                        <p:column headerText="Telefono">
+                            <h:outputText value="#{paciente.telefono}"/>
+                        </p:column>
+                        private Integer idPaciente;
+                        private String nombre;
+                        private String apellido;
+                        private String fechadeNacimiento;
+                        private String telefono;
+                    </p:dataTable>
+                </div>
             </h:form>
 <!--            modal-->
         </div>
