@@ -12,7 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@SpringBootApplication
+// @SpringBootApplication
 public class Ap1clinicaDentalApplication implements CommandLineRunner{
 	@Autowired
 	private IPacienteService pacienteService;

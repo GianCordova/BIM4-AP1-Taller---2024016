@@ -1,9 +1,12 @@
 package org.nexus.ap1clinica_dental.controller;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import lombok.Data;
 import org.nexus.ap1clinica_dental.entity.Paciente;
 import org.nexus.ap1clinica_dental.service.IPacienteService;
+import org.primefaces.PrimeFaces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

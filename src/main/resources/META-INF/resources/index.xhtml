@@ -3,120 +3,29 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core"
         xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Registro Paciente</title>
+        <title>Pagina Principal</title>
         <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
         <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-dark.css"/>
     </h:head>
     <h:body>
-        <p>Hola Mundo, estoy con jsf</p>
-        <div class="card">
-            <h:form id="formulario-pacientes">
-                <p:growl id="mensaje-emergente" showDetails="true"/>
-<!--                barra de menu-->
-                <div class="card">
-                    <p:menubar>
-<!--                        boton de actualizar-->
-                        <p:menuitem value="Inicio" icon="pi pi-fw pi-user"
-                                    update=":formulario-pacientes:tabla-pacientes"
-                                    actionListener="#{indexController.cargarDatos}"/>
-<!--                        boton para agregar un nuevo Paciente-->
-                        <p:menuitem value="Nuevo Paciente" icon="pi pi-fw pi-plus"
-                                    actionListener="#{indexController.agregarPaciente}"
-                                    update=":formulario-pacientes:ventana-paciente @this"
-                                    oncomplete="PF('ventanaModalPaciente').show()"/>
-                    </p:menubar>
-
-                </div>
-<!--            tabla de paciente-->
-                <div class="card">
-                    <p:dataTable value="#{indexController.pacientes}" var="paciente"
-                                    id="tabla-pacientes" widgetVar="pacienteTabla">
-                        <f:facet name="header">
-                            <div class="flex justify-content-center flex-wrap
-                                        card-container yellow -container">
-                                <div class="flex align-items-center justify-content-center
-                                            w-20rem h4rem bg-yellow-500 font-bold m-2
-                                            text-gray-900 border-round">
-                                    <h3>Registro de Pacientes - nexus</h3>
-                                </div>
-                            </div>
-                        </f:facet>
-
-                        <p:column headerText="ID">
-                            <h:outputText value="#{paciente.idPaciente}"/>
-                        </p:column>
-                        <p:column headerText="Nombre">
-                            <h:outputText value="#{paciente.nombre}"/>
-                        </p:column>
-                        <p:column headerText="Apellido">
-                            <h:outputText value="#{paciente.apellido}"/>
-                        </p:column>
-                        <p:column headerText="Fecha de Nacimiento">
-                            <h:outputText value="#{paciente.fechadeNacimiento}"/>
-                        </p:column>
-                        <p:column headerText="Telefono">
-                            <h:outputText value="#{paciente.telefono}"/>
-                        </p:column>
-                        <p:column>
-                            <p:commandButton value="Editar" icon="pi pi-pencil"
-                                                update=":formulario-modal:ventana-paciente"
-                                                process="@this"
-                                                oncomplete="PF('ventanaModalPaciente').show()"
-                                                class="ui-button-primary"
-                                                style="margin-right:.5rem">
-                                <f:setPropertyActionListener
-                                                value="#{paciente}"
-                                                target="#{indexController.pacienteSeleccionado}"/>
-                                <p:commandButton />
-                            </p:commandButton>
-                            <p:commandButton value="Eliminar" icon="pi pi-trash"
-                                             class="ui-button-danger">
-
-                            </p:commandButton>
-                        </p:column>
-
-                    </p:dataTable>
-                </div>
-
-            </h:form>
-            <h:form id="formulario-modal">
-                <p:dialog header="Detalle Pacientes" showEffecet="fade" modal="true" widgetVar="ventanaModalPaciente" responsive="true">
-                    <p:outputPanel id="ventana-paciente" class="ui-fluid">
-                        <div class="field">
-                            <p:outputLabel for="nombre">Nombre</p:outputLabel>
-                            <p:inputText id="nombre"
-                                         value="#{indexController.pacienteSeleccionado.nombre}"
-                                         required="true" />
-                        </div>
-                        <div class="field">
-                            <p:outputLabel for="apellido">Apellido</p:outputLabel>
-                            <p:inputText id="apellido"
-                                         value="#{indexController.pacienteSeleccionado.apellido}"
-                                         required="true" />
-                        </div>
-                        <div class="field">
-                            <p:outputLabel for="fechadeNacimiento">Fecha de Nacimiento</p:outputLabel>
-                            <p:inputText id="fechadeNacimiento"
-                                         value="#{indexController.pacienteSeleccionado.fechadeNacimiento}"
-                                         required="true" />
-                        </div>
-                        <div class="field">
-                            <p:outputLabel for="telefono">Telefono</p:outputLabel>
-                            <p:inputText id="telefono"
-                                         value="#{indexController.pacienteSeleccionado.telefono}"
-                                         required="true" />
-                        </div>
-                    </p:outputPanel>
-                    <f:facet name="footer0">
-                        <p:commandButton value="Guardar" icon="pi pi-check"
-                        process="ventana-cliente @this"
-                        actionListener="#{indexController.guardarCliente}"/>
-                    </f:facet>
-
-                </p:dialog>
-
-            </h:form>
-<!--            modal-->
-        </div>
+        <h1 align="center"><strong><u>Pagina Principal Clinica Nexus</u></strong></h1>
+        <p align="center" style="font-size: 20px"> Esta es la pagina principal de la Clinica Nexus, donde se podran visualizar y gestionar a los pacientes registrados</p>
+            <div class="card">
+                <h:form>
+                    <p:growl showDatails="true"/>
+                    <div class="card">
+                        <p style="font-size: 30px">Boton para ir al mantenimiento (CRUD)</p>
+                            <p:button value="Ir al CRUD"
+                                      outcome="crud.xhtml"
+                                      icon="pi pi-pencil"
+                                      style="margin-right:.5rem"/>
+                        <p style="font-size: 30px">Boton para ver los pacientes registrados</p>
+                            <p:button value="Pacientes"
+                                      outcome="pacientes.xhtml"
+                                      icon="pi pi-fw pi-user"
+                                      style="margin-right:.5rem"/>
+                    </div>
+                </h:form>
+            </div>
     </h:body>
 </h:html>
